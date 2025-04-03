@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Entra como superusuário
-sudo su
-
 # Verifica se menu.xml já existe e renomeia se necessário
 if [ -f ~/.config/openbox/menu.xml ]; then
   mv ~/.config/openbox/menu.xml ~/.config/openbox/menu_$(date +%Y%m%d%H%M%S).xml

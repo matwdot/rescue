@@ -1,13 +1,21 @@
 #!/bin/bash
 
 # Verifica se menu.xml já existe e renomeia se necessário
-if [ -f ~/.config/openbox/menu.xml ]; then
-  mv ~/.config/openbox/menu.xml ~/.config/openbox/menu_$(date +%Y%m%d%H%M%S).xml
+if [ -f /home/pdv/.config/openbox/menu.xml ]; then
+  mv /home/pdv/.config/openbox/menu.xml /home/pdv/.config/openbox/menu_$(date +%Y%m%d%H%M%S).xml
   echo "Arquivo menu.xml já existente renomeado para menu_$(date +%Y%m%d%H%M%S).xml"
 fi
 
 # Copia o novo menu.xml para ~/.config/openbox
-cp menu.xml ~/.config/openbox/
+
+echo -e "\033[1;33mCopiando o arquivo...\033[0m"
+cp menu.xml /home/pdv/.config/openbox
+
+echo -e "\033[1;33mAplicando permissões no arquivo...\033[0m"
+chmod +x /home/pdv/.config/openbox/menu.xml
+
+
+echo -e "\033[1;32mIniciando instalação do rescue-callingcard\033[0m"
 
 # Verifica se o wget já está instalado
 if ! command -v wget &> /dev/null; then
@@ -28,6 +36,6 @@ apt-get update && apt-get install --yes rescue-callingcard
 # Cria o arquivo de configuração para o CallingCard
 echo "https://secure.logmeinrescue.com/CallingCard/CallingCardCustomization.aspx?company_id=3394892&channel_id=6063156&lmi_os=linux" | tee /opt/rescue-callingcard/bin/.callingcard
 
-echo "Script concluído com sucesso!"
+echo -e "\033[1;32mScript concluído com sucesso!\033[0m"
 
 exit 0
